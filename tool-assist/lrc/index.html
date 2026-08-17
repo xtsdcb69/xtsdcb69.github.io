@@ -127,10 +127,10 @@
             cw("audio").el.play();
             cw("button").disabled = true;
             applyAll("input, textarea", el => cw(el).disabled = true);
-            if (addBlank) { clickEnter(1); }
+            if (addBlank) { clickEnter(undefined, 1); }
         }
 
-        function clickEnter(force) {
+        function clickEnter(e, force) {
             if (!startTime || nowIndex + 1 > totalLyric) { return; }
             
             const timeDiff = Math.max(new Date().getTime() - startTime - offset, 0);
