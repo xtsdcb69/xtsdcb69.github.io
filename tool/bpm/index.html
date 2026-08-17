@@ -19,6 +19,11 @@
     <div id="cw-content">
         <p>在音乐节拍处按下 Enter 键来分析节拍。按下 R 重置。</p>
         <br />
+        <p>本网页将会 <span style="color: var(--green)">绿色</span> 标出最有可能匹配歌曲此时此刻的正确 BPM.</p>
+        <p>因此，对于 BPM 变化的歌曲则不需要中途重置 BPM 计时。</p>
+        <br />
+        <p>显示如 &quot;<span style="color: var(--textColor-400)">(8)</span>&quot; 的文字，表示还需要再按下节拍 8 次才能显示该信息。</p>
+        <br />
         <div id="main" hidden>
             <table>
                 <tbody>
@@ -172,9 +177,7 @@
                 beats.all = [];
                 calculatedBPM = [].add(null, 7);
                 applyAll(".values", el => cw(el).text = "");
-                document.querySelectorAll(`tr > td:not([class*="debugLine"]), tr > th:not([class*="debugLine"])`).forEach(el => {
-                    cw(el).color = "var(--textColor-500)";
-                });
+                applyAll(`tr > td:not([class*="debugLine"]), tr > th:not([class*="debugLine"])`, el => cw(el).color = "var(--textColor-500)");
             }
         });
 
@@ -185,6 +188,7 @@
             }
 
             cw("#press").text = Number(cw("#press").text) + 1;
+            applyAll(`tr > td:not([class*="debugLine"]), tr > th:not([class*="debugLine"])`, el => cw(el).color = "var(--textColor-500)");
 
             const now = new Date().getTime();
 
@@ -201,7 +205,8 @@
 
         function updateNewest(time) {
             if (beats.last == null) {
-                cw("#int-newest").text = "(再点击 1 次)";
+                cw("#int-newest").text = "(1)";
+                cw("#int-newest").color = "var(--textColor-400)";
                 beats.last = time;
                 return;
             }
@@ -219,7 +224,8 @@
             beats.recent4.pop();
             beats.recent4.unshift(time);
             if (beats.recent4.getCountOf(null) > 0) {
-                cw("#int-4").text = `(再点击 ${beats.recent4.getCountOf(null)} 次)`;
+                cw("#int-4").text = `(${beats.recent4.getCountOf(null)})`;
+                cw("#int-4").color = "var(--textColor-400)";
                 return;
             }
 
@@ -240,7 +246,8 @@
             beats.recent8.pop();
             beats.recent8.unshift(time);
             if (beats.recent8.getCountOf(null) > 0) {
-                cw("#int-8").text = `(再点击 ${beats.recent8.getCountOf(null)} 次)`;
+                cw("#int-8").text = `(${beats.recent8.getCountOf(null)})`;
+                cw("#int-8").color = "var(--textColor-400)";
                 return;
             }
 
@@ -261,7 +268,8 @@
             beats.recent16.pop();
             beats.recent16.unshift(time);
             if (beats.recent16.getCountOf(null) > 0) {
-                cw("#int-16").text = `(再点击 ${beats.recent16.getCountOf(null)} 次)`;
+                cw("#int-16").text = `(${beats.recent16.getCountOf(null)})`;
+                cw("#int-16").color = "var(--textColor-400)";
                 return;
             }
 
@@ -282,7 +290,8 @@
             beats.recent32.pop();
             beats.recent32.unshift(time);
             if (beats.recent32.getCountOf(null) > 0) {
-                cw("#int-32").text = `(再点击 ${beats.recent32.getCountOf(null)} 次)`;
+                cw("#int-32").text = `(${beats.recent32.getCountOf(null)})`;
+                cw("#int-32").color = "var(--textColor-400)";
                 return;
             }
 
@@ -303,7 +312,8 @@
             beats.recent64.pop();
             beats.recent64.unshift(time);
             if (beats.recent64.getCountOf(null) > 0) {
-                cw("#int-64").text = `(再点击 ${beats.recent64.getCountOf(null)} 次)`;
+                cw("#int-64").text = `(${beats.recent64.getCountOf(null)})`;
+                cw("#int-64").color = "var(--textColor-400)";
                 return;
             }
 
@@ -323,7 +333,8 @@
         function updateAll(time) {
             beats.all.push(time);
             if (beats.all.length == 1) {
-                cw("#int-total").text = "(再点击 1 次)";
+                cw("#int-total").text = "(1)";
+                cw("#int-total").color = "var(--textColor-400)";
                 return;
             }
 
@@ -344,9 +355,7 @@
             if (beats.all.length == 1) { return; }
 
             const debug = false;
-            if (debug) {
-                document.querySelectorAll(".debugLine").forEach(el => cw(el).unhide("table-cell"));
-            }
+            if (debug) { applyAll(".debugLine", el => cw(el).unhide("table-cell")); }
 
             const useMethod = "chiwa_inherit_pelt";
             log(calculatedBPM);
@@ -575,23 +584,17 @@
                 return;
             }
 
-            document.querySelectorAll(`tr > td:not([class*="debugLine"]), tr > th:not([class*="debugLine"])`).forEach(el => {
-                cw(el).color = "var(--textColor-500)";
-            });
-
             log(`mostAccurate(${id})`);
 
             if (id == "newest" && !calculatedBPM[0]) { return; }
             if (id == "4" && !calculatedBPM[1]) { return; }
-            if (id == "8" && !calculatedBPM[2]) { return; }
-            if (id == "16" && !calculatedBPM[3]) { return; }
-            if (id == "32" && !calculatedBPM[4]) { return; }
-            if (id == "64" && !calculatedBPM[5]) { return; }
+            if (id == "8" && !calculatedBPM[2]) { mostAccurate("4"); return; }
+            if (id == "16" && !calculatedBPM[3]) { mostAccurate("8"); return; }
+            if (id == "32" && !calculatedBPM[4]) { mostAccurate("16"); return; }
+            if (id == "64" && !calculatedBPM[5]) { mostAccurate("32"); return; }
             if (id == "total" && !calculatedBPM[6]) { return; }
 
-            document.querySelectorAll(`tr#line-${id} > td:not([class*="debugLine"]), tr#line-${id} > th:not([class*="debugLine"])`).forEach(el => {
-                cw(el).color = "var(--green)";
-            });
+            applyAll(`tr#line-${id} > td:not([class*="debugLine"]), tr#line-${id} > th:not([class*="debugLine"])`, el => cw(el).color = "var(--green)");
         }
 
         /**
