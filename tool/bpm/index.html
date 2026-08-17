@@ -21,74 +21,124 @@
         <br />
         <div id="main" hidden>
             <table>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>整数</td>
-                    <td>|</td>
-                    <td>原始值</td>
-                    <td>峰值</td>
-                    <td>谷值</td>
-                </tr>
-                <tr>
-                    <th>最新 BPM</th>
-                    <th id="int-newest" class="values"></th>
-                    <td>|</td>
-                    <td id="v-newest" class="values"></td>
-                    <td id="h-newest" class="values"></td>
-                    <td id="l-newest" class="values"></td>
-                </tr>
-                <tr>
-                    <td>近 4 次 BPM</td>
-                    <td id="int-4" class="values"></td>
-                    <td>|</td>
-                    <td id="v-4" class="values"></td>
-                    <td id="h-4" class="values"></td>
-                    <td id="l-4" class="values"></td>
-                </tr>
-                <tr>
-                    <td>近 8 次 BPM</td>
-                    <td id="int-8" class="values"></td>
-                    <td>|</td>
-                    <td id="v-8" class="values"></td>
-                    <td id="h-8" class="values"></td>
-                    <td id="l-8" class="values"></td>
-                </tr>
-                <tr>
-                    <td>近 16 次 BPM</td>
-                    <td id="int-16" class="values"></td>
-                    <td>|</td>
-                    <td id="v-16" class="values"></td>
-                    <td id="h-16" class="values"></td>
-                    <td id="l-16" class="values"></td>
-                </tr>
-                <tr>
-                    <td>近 32 次 BPM</td>
-                    <td id="int-32" class="values"></td>
-                    <td>|</td>
-                    <td id="v-32" class="values"></td>
-                    <td id="h-32" class="values"></td>
-                    <td id="l-32" class="values"></td>
-                </tr>
-                <tr>
-                    <td>近 64 次 BPM</td>
-                    <td id="int-64" class="values"></td>
-                    <td>|</td>
-                    <td id="v-64" class="values"></td>
-                    <td id="h-64" class="values"></td>
-                    <td id="l-64" class="values"></td>
-                </tr>
-                <tr>
-                    <th>总平均 BPM</th>
-                    <th id="int-total" class="values"></th>
-                    <td>|</td>
-                    <td id="v-total" class="values"></td>
-                    <td id="h-total" class="values"></td>
-                    <td id="l-total" class="values"></td>
-                </tr>
-                <tr>
-                    <td>点击次数</td>
-                    <td id="press" class="values"></td>
-                </tr>
+                <tbody>
+                    <tr id="line-title">
+                        <td>&nbsp;</td>
+                        <td>整数</td>
+                        <td>|</td>
+                        <td>原始值</td>
+                        <td>峰值</td>
+                        <td>谷值</td>
+                        <td class="debugLine" hidden>|</td>
+                        <td class="debugLine" hidden>ds_ask</td>
+                        <td class="debugLine" hidden>cw_interval</td>
+                        <td class="debugLine" hidden>cw_hitError</td>
+                        <td class="debugLine" hidden>cw_inherit</td>
+                        <td class="debugLine" hidden>ds_pelt</td>
+                    </tr>
+                    <tr id="line-newest">
+                        <th>最新 BPM</th>
+                        <th id="int-newest" class="values"></th>
+                        <td>|</td>
+                        <td id="v-newest" class="values"></td>
+                        <td id="h-newest" class="values"></td>
+                        <td id="l-newest" class="values"></td>
+                        <td class="debugLine" hidden>|</td>
+                        <td id="d1-newest" class="debugLine" hidden></td>
+                        <td id="d2-newest" class="debugLine" hidden></td>
+                        <td id="d3-newest" class="debugLine" hidden></td>
+                        <td id="d4-newest" class="debugLine" hidden></td>
+                        <td id="d5-newest" class="debugLine" hidden></td>
+                    </tr>
+                    <tr id="line-4">
+                        <td>近 4 次 BPM</td>
+                        <td id="int-4" class="values"></td>
+                        <td>|</td>
+                        <td id="v-4" class="values"></td>
+                        <td id="h-4" class="values"></td>
+                        <td id="l-4" class="values"></td>
+                        <td class="debugLine" hidden>|</td>
+                        <td id="d1-4" class="values debugLine" hidden></td>
+                        <td id="d2-4" class="values debugLine" hidden></td>
+                        <td id="d3-4" class="values debugLine" hidden></td>
+                        <td id="d4-4" class="values debugLine" hidden></td>
+                        <td id="d5-4" class="values debugLine" hidden></td>
+                    </tr>
+                    <tr id="line-8">
+                        <td>近 8 次 BPM</td>
+                        <td id="int-8" class="values"></td>
+                        <td>|</td>
+                        <td id="v-8" class="values"></td>
+                        <td id="h-8" class="values"></td>
+                        <td id="l-8" class="values"></td>
+                        <td class="debugLine" hidden>|</td>
+                        <td id="d1-8" class="values debugLine" hidden></td>
+                        <td id="d2-8" class="values debugLine" hidden></td>
+                        <td id="d3-8" class="values debugLine" hidden></td>
+                        <td id="d4-8" class="values debugLine" hidden></td>
+                        <td id="d5-8" class="values debugLine" hidden></td>
+                    </tr>
+                    <tr id="line-16">
+                        <td>近 16 次 BPM</td>
+                        <td id="int-16" class="values"></td>
+                        <td>|</td>
+                        <td id="v-16" class="values"></td>
+                        <td id="h-16" class="values"></td>
+                        <td id="l-16" class="values"></td>
+                        <td class="debugLine" hidden>|</td>
+                        <td id="d1-16" class="values debugLine" hidden></td>
+                        <td id="d2-16" class="values debugLine" hidden></td>
+                        <td id="d3-16" class="values debugLine" hidden></td>
+                        <td id="d4-16" class="values debugLine" hidden></td>
+                        <td id="d5-16" class="values debugLine" hidden></td>
+                    </tr>
+                    <tr id="line-32">
+                        <td>近 32 次 BPM</td>
+                        <td id="int-32" class="values"></td>
+                        <td>|</td>
+                        <td id="v-32" class="values"></td>
+                        <td id="h-32" class="values"></td>
+                        <td id="l-32" class="values"></td>
+                        <td class="debugLine" hidden>|</td>
+                        <td id="d1-32" class="values debugLine" hidden></td>
+                        <td id="d2-32" class="values debugLine" hidden></td>
+                        <td id="d3-32" class="values debugLine" hidden></td>
+                        <td id="d4-32" class="values debugLine" hidden></td>
+                        <td id="d5-32" class="values debugLine" hidden></td>
+                    </tr>
+                    <tr id="line-64">
+                        <td>近 64 次 BPM</td>
+                        <td id="int-64" class="values"></td>
+                        <td>|</td>
+                        <td id="v-64" class="values"></td>
+                        <td id="h-64" class="values"></td>
+                        <td id="l-64" class="values"></td>
+                        <td class="debugLine" hidden>|</td>
+                        <td id="d1-64" class="values debugLine" hidden></td>
+                        <td id="d2-64" class="values debugLine" hidden></td>
+                        <td id="d3-64" class="values debugLine" hidden></td>
+                        <td id="d4-64" class="values debugLine" hidden></td>
+                        <td id="d5-64" class="values debugLine" hidden></td>
+                    </tr>
+                    <tr id="line-total">
+                        <th>总平均 BPM</th>
+                        <th id="int-total" class="values"></th>
+                        <td>|</td>
+                        <td id="v-total" class="values"></td>
+                        <td id="h-total" class="values"></td>
+                        <td id="l-total" class="values"></td>
+                        <td class="debugLine" hidden>|</td>
+                        <td id="d1-total" class="values debugLine" hidden></td>
+                        <td id="d2-total" class="values debugLine" hidden></td>
+                        <td id="d3-total" class="values debugLine" hidden></td>
+                        <td id="d4-total" class="values debugLine" hidden></td>
+                        <td id="d5-total" class="values debugLine" hidden></td>
+                    </tr>
+                    <tr id="line-count">
+                        <td>点击次数</td>
+                        <td id="press" class="values"></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
         <br />
@@ -105,6 +155,7 @@
             recent64: [].add(null, 64),
             all: []
         };
+        let calculatedBPM = [null, null, null, null, null, null, null];
 
         window.addEventListener("keydown", e => {
             if (e.code == "Enter") { beat(); }
@@ -119,7 +170,11 @@
                 beats.recent32 = [].add(null, 32);
                 beats.recent64 = [].add(null, 64);
                 beats.all = [];
+                calculatedBPM = [].add(null, 7);
                 applyAll(".values", el => cw(el).text = "");
+                document.querySelectorAll(`tr > td:not([class*="debugLine"]), tr > th:not([class*="debugLine"])`).forEach(el => {
+                    cw(el).color = "var(--textColor-500)";
+                });
             }
         });
 
@@ -140,6 +195,8 @@
             updateRecent32(now);
             updateRecent64(now);
             updateAll(now);
+
+            findMostAccurate();
         }
 
         function updateNewest(time) {
@@ -155,6 +212,7 @@
             if (bpm.keep(4) > (cw("#h-newest").text || -Infinity)) { cw("#h-newest").text = bpm.keep(4); }
             if (bpm.keep(4) < (cw("#l-newest").text || Infinity)) { cw("#l-newest").text = bpm.keep(4); }
             beats.last = time;
+            calculatedBPM[0] = bpm.keep(4);
         }
 
         function updateRecent4(time) {
@@ -175,6 +233,7 @@
             cw("#int-4").text = bpm4.keep(0);
             if (bpm4.keep(4) > (cw("#h-4").text || -Infinity)) { cw("#h-4").text = bpm4.keep(4); }
             if (bpm4.keep(4) < (cw("#l-4").text || Infinity)) { cw("#l-4").text = bpm4.keep(4); }
+            calculatedBPM[1] = bpm4.keep(4);
         }
 
         function updateRecent8(time) {
@@ -195,6 +254,7 @@
             cw("#int-8").text = bpm8.keep(0);
             if (bpm8.keep(4) > (cw("#h-8").text || -Infinity)) { cw("#h-8").text = bpm8.keep(4); }
             if (bpm8.keep(4) < (cw("#l-8").text || Infinity)) { cw("#l-8").text = bpm8.keep(4); }
+            calculatedBPM[2] = bpm8.keep(4);
         }
 
         function updateRecent16(time) {
@@ -215,6 +275,7 @@
             cw("#int-16").text = bpm16.keep(0);
             if (bpm16.keep(4) > (cw("#h-16").text || -Infinity)) { cw("#h-16").text = bpm16.keep(4); }
             if (bpm16.keep(4) < (cw("#l-16").text || Infinity)) { cw("#l-16").text = bpm16.keep(4); }
+            calculatedBPM[3] = bpm16.keep(4);
         }
 
         function updateRecent32(time) {
@@ -235,6 +296,7 @@
             cw("#int-32").text = bpm32.keep(0);
             if (bpm32.keep(4) > (cw("#h-32").text || -Infinity)) { cw("#h-32").text = bpm32.keep(4); }
             if (bpm32.keep(4) < (cw("#l-32").text || Infinity)) { cw("#l-32").text = bpm32.keep(4); }
+            calculatedBPM[4] = bpm32.keep(4);
         }
 
         function updateRecent64(time) {
@@ -255,6 +317,7 @@
             cw("#int-64").text = bpm64.keep(0);
             if (bpm64.keep(4) > (cw("#h-64").text || -Infinity)) { cw("#h-64").text = bpm64.keep(4); }
             if (bpm64.keep(4) < (cw("#l-64").text || Infinity)) { cw("#l-64").text = bpm64.keep(4); }
+            calculatedBPM[5] = bpm64.keep(4);
         }
 
         function updateAll(time) {
@@ -274,6 +337,512 @@
             cw("#int-total").text = bpmAll.keep(0);
             if (bpmAll.keep(4) > (cw("#h-total").text || -Infinity)) { cw("#h-total").text = bpmAll.keep(4); }
             if (bpmAll.keep(4) < (cw("#l-total").text || Infinity)) { cw("#l-total").text = bpmAll.keep(4); }
+            calculatedBPM[6] = bpmAll.keep(4);
+        }
+
+        function findMostAccurate() {
+            if (beats.all.length == 1) { return; }
+
+            const debug = false;
+            if (debug) {
+                document.querySelectorAll(".debugLine").forEach(el => cw(el).unhide("table-cell"));
+            }
+
+            const useMethod = "chiwa_inherit_pelt";
+            log(calculatedBPM);
+            const [Tn, T4, T8, T16, T32, T64, Tt] = calculatedBPM;
+
+            // "ds_ask" DeepSeek directly provided answer
+            {
+                const timeJitter = 8;
+                const baseBPM = Tt;
+                const theta = 1.8 * baseBPM ** 2 / 60000;
+                const range = Math.max(calculatedBPM) - Math.min(calculatedBPM);
+
+                if (range <= theta) {
+                    mostAccurate("total", 1);
+                } else if (Math.abs(T4 - Tt) <= theta && Math.abs(T8 - Tt) <= theta) {
+                    mostAccurate("total", 1);
+                } else {
+                    const delta48 = T4 - T8;
+                    const deltaL4 = Tn - T4;
+
+                    if (Math.abs(delta48) <= theta) {
+                        mostAccurate("8", 1);
+                    } else if (delta48 * deltaL4 >= 0) {
+                        mostAccurate("4", 1);
+                    } else {
+                        mostAccurate("8", 1);
+                    }
+                }
+            }
+
+            // "chiwa_interval" Using interval k values and trust factor
+            {
+                const isBpmStatic = (() => {
+                    const Tn4 = (T4 * 3 - Tn) / 2;
+                    const T48 = (T8 * 7 - Tn * 3) / 4;
+                    const T816 = (T4 * 15 - Tn * 7) / 8;
+                    const T1632 = (T4 * 31 - Tn * 15) / 16;
+                    const T3264 = (T4 * 63 - Tn * 31) / 32;
+
+                    let trust = 1;
+                    if ((Tn - Tn4) * (Tn4 - T48) <= 0) { trust -= 0.15; }
+                    if ((Tn4 - T48) * (T48 - T816) <= 0) { trust -= 0.2; }
+                    if ((T48 - T816) * (T816 - T1632) <= 0) { trust -= 0.25; }
+                    if ((T816 - T1632) * (T1632 - T3264) <= 0) { trust -= 0.3; }
+
+                    log({ Tn4, T48, T816, T1632, T3264 });
+                    log(trust);
+
+                    return trust >= 0.5;
+                })();
+
+                if (isBpmStatic) {
+                    mostAccurate("total", 2);
+                } else {
+                    // Incomplete
+                    mostAccurate("newest", 2);
+                }
+            }
+
+            // "chiwa_hitError" Judge by hit error ranges
+            {
+                const bpmStaticTrust = (() => {
+                    const hitErrorMargin = bpm => Math.min(1000, bpm / 8);
+                    let value = 1;
+                    
+                    if (Tn > 0 && T4 > 0 && Math.abs(Tn - T4) > hitErrorMargin(Tn)) { value -= 0.3; }
+                    if (T4 > 0 && T8 > 0 && Math.abs(T4 - T8) > hitErrorMargin(Tn) / 2) { value -= 0.3; }
+                    if (T8 > 0 && T16 > 0 && Math.abs(T8 - T16) > hitErrorMargin(Tn) / 4) { value -= 0.3; }
+                    if (T16 > 0 && T32 > 0 && Math.abs(T16 - T32) > hitErrorMargin(Tn) / 8) { value -= 0.3; }
+                    if (T32 > 0 && T64 > 0 && Math.abs(T32 - T64) > hitErrorMargin(Tn) / 16) { value -= 0.3; }
+                    if (T64 > 0 && Tt > 0 && Math.abs(T64 - Tt) > hitErrorMargin(Tn) / 16) { value -= 0.3; }
+                    
+                    log(hitErrorMargin(Tn));
+                    log(value);
+
+                    return value;
+                })();
+
+                let highestTrustLine = Infinity;
+                // Incomplete
+                if (bpmStaticTrust >= 0.5) {
+                    mostAccurate("total", 3);
+                } else if (bpmStaticTrust >= 0.2) {
+                    highestTrustLine = 64;
+                    mostAccurate("64", 3);
+                } else if (bpmStaticTrust >= 0) {
+                    highestTrustLine = 16;
+                    mostAccurate("16", 3);
+                } else if (bpmStaticTrust >= -0.3) {
+                    highestTrustLine = 8;
+                    mostAccurate("8", 3);
+                } else {
+                    highestTrustLine = 4;
+                    mostAccurate("4", 3);
+                }
+            }
+
+            // "chiwa_inherit" Inherit true if in hit error range
+            {
+                const hitErrorMargin = (bpm => Math.min(1000, bpm / 8))(Tn);
+                let inherit = 0;
+
+                if (T4 > 0 && Math.abs(Tn - T4) < hitErrorMargin) { inherit++; }
+                if (T8 > 0 && Math.abs(T4 - T8) < hitErrorMargin / 4) { inherit++; }
+                if (T16 > 0 && Math.abs(T8 - T16) < hitErrorMargin / 8) { inherit++; }
+                if (T32 > 0 && Math.abs(T16 - T32) < hitErrorMargin / 16) { inherit++; }
+                if (T64 > 0 && Math.abs(T32 - T64) < hitErrorMargin / 32) { inherit++; }
+                if (Tt > 0 && Math.abs(T64 - Tt) < hitErrorMargin / 64) { inherit++; }
+
+                if (T4 > 0 && Math.abs(T4 - Tt) < hitErrorMargin / 8) { inherit = 6; }
+
+                mostAccurate(["newest", "4", "8", "16", "32", "64", "total"][inherit], 4);
+            }
+
+            // "ds_pelt" DeepSeek provided PELT
+            {
+                let breakpoint = 0;
+
+                const changesArr = (arr => {
+                    const returnArr = [];
+                    arr.forEach((_, i) => {
+                        if (i != 0 && arr[i] != null && arr[i - 1] != null) {
+                            returnArr.push(arr[i] - arr[i - 1]);
+                        }
+                    });
+                    return returnArr;
+                })(beats.all).reverse();
+
+                const breakpoints = detectBreakpoints(changesArr).breakpoints;
+                if (breakpoints[0]?.range(1, 3)) { breakpoint = 1; }
+                if (breakpoints[0]?.range(4, 7)) { breakpoint = 2; }
+                if (breakpoints[0]?.range(8, 15)) { breakpoint = 3; }
+                if (breakpoints[0]?.range(16, 31)) { breakpoint = 4; }
+                if (breakpoints[0]?.range(32, 63)) { breakpoint = 5; }
+                if (breakpoints[0] >= 64 || breakpoints[0] == undefined) { breakpoint = 6; }
+
+                mostAccurate(["newest", "4", "8", "16", "32", "64", "total"][breakpoint], 5);
+            }
+
+            // "chiwa_inherit_pelt" Inherit + PELT
+            {
+                // Acc 1
+                let accurate1 = 0;
+
+                const hitErrorMargin = (bpm => Math.min(1000, bpm / 8))(Tn);
+
+                if (T4 > 0 && Math.abs(Tn - T4) < hitErrorMargin) { accurate1++; }
+                if (T8 > 0 && Math.abs(T4 - T8) < hitErrorMargin / 4) { accurate1++; }
+                if (T16 > 0 && Math.abs(T8 - T16) < hitErrorMargin / 8) { accurate1++; }
+                if (T32 > 0 && Math.abs(T16 - T32) < hitErrorMargin / 16) { accurate1++; }
+                if (T64 > 0 && Math.abs(T32 - T64) < hitErrorMargin / 32) { accurate1++; }
+                if (Tt > 0 && Math.abs(T64 - Tt) < hitErrorMargin / 64) { accurate1++; }
+
+                if (T4 > 0 && Math.abs(T4 - Tt) < hitErrorMargin / 8) { accurate1 = 6; }
+
+                // Acc 2
+                let accurate2 = 0;
+
+                const changesArr = (arr => {
+                    const returnArr = [];
+                    arr.forEach((_, i) => {
+                        if (i != 0 && arr[i] != null && arr[i - 1] != null) {
+                            returnArr.push(arr[i] - arr[i - 1]);
+                        }
+                    });
+                    return returnArr;
+                })(beats.all).reverse();
+
+                const breakpoints = detectBreakpoints(changesArr).breakpoints;
+                if (breakpoints[0]?.range(1, 3)) { accurate2 = 1; }
+                if (breakpoints[0]?.range(4, 7)) { accurate2 = 2; }
+                if (breakpoints[0]?.range(8, 15)) { accurate2 = 3; }
+                if (breakpoints[0]?.range(16, 31)) { accurate2 = 4; }
+                if (breakpoints[0]?.range(32, 63)) { accurate2 = 5; }
+                if (breakpoints[0] >= 64 || breakpoints[0] == undefined) { accurate2 = 6; }
+
+                mostAccurate(["newest", "4", "8", "16", "32", "64", "total"][Math.min(accurate1, accurate2)], 6);
+            }
+        }
+
+        function mostAccurate(id, debugId = 6) {
+            if (debugId != 6) {
+                cw(`#d${debugId}-newest`).text = "false";
+                cw(`#d${debugId}-4`).text = "false";
+                cw(`#d${debugId}-8`).text = "false";
+                cw(`#d${debugId}-16`).text = "false";
+                cw(`#d${debugId}-32`).text = "false";
+                cw(`#d${debugId}-64`).text = "false";
+                cw(`#d${debugId}-total`).text = "false";
+                cw(`#d${debugId}-newest`).color = "var(--red)";
+                cw(`#d${debugId}-4`).color = "var(--red)";
+                cw(`#d${debugId}-8`).color = "var(--red)";
+                cw(`#d${debugId}-16`).color = "var(--red)";
+                cw(`#d${debugId}-32`).color = "var(--red)";
+                cw(`#d${debugId}-64`).color = "var(--red)";
+                cw(`#d${debugId}-total`).color = "var(--red)";
+                if (id == "newest" || id == "4" || id == "8" || id == "16" || id == "32" || id == "64" || id == "total") {
+                    cw(`#d${debugId}-newest`).text = "true";
+                    cw(`#d${debugId}-newest`).color = "var(--green)";
+                }
+                if (id == "4" || id == "8" || id == "16" || id == "32" || id == "64" || id == "total") {
+                    cw(`#d${debugId}-4`).text = "true";
+                    cw(`#d${debugId}-4`).color = "var(--green)";
+                }
+                if (id == "8" || id == "16" || id == "32" || id == "64" || id == "total") {
+                    cw(`#d${debugId}-8`).text = "true";
+                    cw(`#d${debugId}-8`).color = "var(--green)";
+                }
+                if (id == "16" || id == "32" || id == "64" || id == "total") {
+                    cw(`#d${debugId}-16`).text = "true";
+                    cw(`#d${debugId}-16`).color = "var(--green)";
+                }
+                if (id == "32" || id == "64" || id == "total") {
+                    cw(`#d${debugId}-32`).text = "true";
+                    cw(`#d${debugId}-32`).color = "var(--green)";
+                }
+                if (id == "64" || id == "total") {
+                    cw(`#d${debugId}-64`).text = "true";
+                    cw(`#d${debugId}-64`).color = "var(--green)";
+                }
+                if (id == "total") {
+                    cw(`#d${debugId}-total`).text = "true";
+                    cw(`#d${debugId}-total`).color = "var(--green)";
+                }
+
+                return;
+            }
+
+            document.querySelectorAll(`tr > td:not([class*="debugLine"]), tr > th:not([class*="debugLine"])`).forEach(el => {
+                cw(el).color = "var(--textColor-500)";
+            });
+
+            log(`mostAccurate(${id})`);
+
+            if (id == "newest" && !calculatedBPM[0]) { return; }
+            if (id == "4" && !calculatedBPM[1]) { return; }
+            if (id == "8" && !calculatedBPM[2]) { return; }
+            if (id == "16" && !calculatedBPM[3]) { return; }
+            if (id == "32" && !calculatedBPM[4]) { return; }
+            if (id == "64" && !calculatedBPM[5]) { return; }
+            if (id == "total" && !calculatedBPM[6]) { return; }
+
+            document.querySelectorAll(`tr#line-${id} > td:not([class*="debugLine"]), tr#line-${id} > th:not([class*="debugLine"])`).forEach(el => {
+                cw(el).color = "var(--green)";
+            });
+        }
+
+        /**
+         * ============================================================
+         *  多断点检测（PELT + BIC + 自适应实际显著性）
+         *  根据数据自身的标准差自动调整灵敏度，防止极端值导致过分割
+         * ============================================================
+         */
+
+        function detectBreakpoints(data, options = {}) {
+            const n = data.length;
+            const penaltyMultiplier = options.penaltyMultiplier !== undefined ? options.penaltyMultiplier : 1.5;
+            const minSegmentRatio = options.minSegmentRatio || 0.1;
+            const verbose = options.verbose !== undefined ? options.verbose : true;
+        
+            // ---------- 1. 边界检查 ----------
+            if (n < 4) {
+                const mean = data.reduce((a, b) => a + b, 0) / n || 0;
+                return {
+                    hasChange: false, breakpoints: [], breakpointIndices: [],
+                    segmentMeans: [mean], segmentSizes: [n], numberOfBreakpoints: 0,
+                    firstBreakpoint: null, firstBreakpointIndex: -1,
+                    statisticF: 0, pValue: 1, effectSize: 0,
+                    conclusion: "数据点太少（<4），无法进行可靠检测",
+                    error: "INSUFFICIENT_DATA"
+                };
+            }
+        
+            const minSegmentSize = Math.max(2, Math.floor(n * minSegmentRatio));
+        
+            // ---------- 2. 整体均值和 RSS ----------
+            const overallMean = data.reduce((a, b) => a + b, 0) / n;
+            let overallRSS = 0;
+            for (let i = 0; i < n; i++) { overallRSS += (data[i] - overallMean) ** 2; }
+            if (overallRSS === 0) {
+                return {
+                    hasChange: false, breakpoints: [], breakpointIndices: [],
+                    segmentMeans: [overallMean], segmentSizes: [n], numberOfBreakpoints: 0,
+                    firstBreakpoint: null, firstBreakpointIndex: -1,
+                    statisticF: 0, pValue: 1, effectSize: 0,
+                    conclusion: "数据全相等，无变化", error: null
+                };
+            }
+        
+            // 【核心优化】计算总体标准差，用于自适应阈值
+            const overallStd = Math.sqrt(overallRSS / n);
+
+            // 如果用户未指定 minMeanChange，则自动设为 1.5 倍标准差
+            // 这样极端值（-344）会拉高标准差，使得中间的小波动被自动忽略
+            const minMeanChange = options.minMeanChange !== undefined
+                ? options.minMeanChange
+                : overallStd * 1.5;
+
+            // 效应量阈值保持不变（也可保留用户自定义）
+            const minEffectSize = options.minEffectSize !== undefined ? options.minEffectSize : 0.005;
+        
+            // ---------- 3. 动态规划（PELT） ----------
+            const dp = new Array(n + 1).fill(Infinity);
+            dp[0] = 0;
+            const backtrace = new Array(n + 1).fill(-1);
+            const penalty = Math.log(n) * penaltyMultiplier;
+        
+            for (let i = minSegmentSize; i <= n; i++) {
+                for (let j = 0; j <= i - minSegmentSize; j++) {
+                    let segSum = 0;
+                    for (let k = j; k < i; k++) { segSum += data[k]; }
+                    const segMean = segSum / (i - j);
+                    let segRSS = 0;
+                    for (let k = j; k < i; k++) { segRSS += (data[k] - segMean) ** 2; }
+                    const cost = dp[j] + segRSS + penalty;
+                    if (cost < dp[i]) {
+                        dp[i] = cost;
+                        backtrace[i] = j;
+                    }
+                }
+            }
+        
+            // ---------- 4. 回溯候选断点 ----------
+            const rawBreakpoints = [];
+            let current = n;
+            while (current > 0 && backtrace[current] !== -1) {
+                const bp = backtrace[current];
+                if (bp > 0 && bp < n) { rawBreakpoints.push(bp); }
+                current = bp;
+            }
+            rawBreakpoints.reverse();
+        
+            // ---------- 5. 三重筛选（统计显著 + 效应量 + 自适应绝对变化量） ----------
+            const significantBPs = [];
+            for (let idx = 0; idx < rawBreakpoints.length; idx++) {
+                const bp = rawBreakpoints[idx];
+                const left = data.slice(0, bp);
+                const right = data.slice(bp);
+                const meanL = left.reduce((a, b) => a + b, 0) / left.length;
+                const meanR = right.reduce((a, b) => a + b, 0) / right.length;
+                const meanDiff = Math.abs(meanR - meanL);
+            
+                let rssL = 0, rssR = 0;
+                for (let i = 0; i < left.length; i++) { rssL += (left[i] - meanL) ** 2; }
+                for (let i = 0; i < right.length; i++) { rssR += (right[i] - meanR) ** 2; }
+                const rssSeg = rssL + rssR;
+
+                // 条件 A：统计显著性（F 检验）
+                const df1 = 1, df2 = n - 2;
+                const F = (overallRSS - rssSeg) / df1 / (rssSeg / df2);
+                const crit = getFCriticalValue(df2, 0.05);
+                const isStatSig = F > crit;
+
+                // 条件 B：实际显著性（效应量）
+                const localEffect = (overallRSS - rssSeg) / overallRSS;
+                const isEffectSig = localEffect >= minEffectSize;
+
+                // 条件 C：自适应绝对值变化（利用整体标准差过滤微小抖动）
+                const isChangeEnough = meanDiff >= minMeanChange;
+            
+                if (isStatSig && isEffectSig && isChangeEnough) {
+                    significantBPs.push(bp);
+                }
+            }
+        
+            // ---------- 6. 无显著断点 ----------
+            if (significantBPs.length === 0) {
+                return {
+                    hasChange: false, breakpoints: [], breakpointIndices: [],
+                    segmentMeans: [overallMean], segmentSizes: [n], numberOfBreakpoints: 0,
+                    firstBreakpoint: null, firstBreakpointIndex: -1,
+                    statisticF: 0, pValue: 1, effectSize: 0,
+                    conclusion: `未检测到显著断点（变化阈值自适应设为 ${minMeanChange.toFixed(2)}）`,
+                    error: null
+                };
+            }
+        
+            // ---------- 7. 最终统计 ----------
+            const allBPs = [0, ...significantBPs, n];
+            const finalSegmentMeans = [], finalSegmentSizes = [];
+            let totalSegRSS = 0;
+            for (let i = 0; i < allBPs.length - 1; i++) {
+                const start = allBPs[i], end = allBPs[i + 1];
+                const seg = data.slice(start, end);
+                const mean = seg.reduce((a, b) => a + b, 0) / seg.length;
+                finalSegmentMeans.push(mean);
+                finalSegmentSizes.push(end - start);
+                for (let j = 0; j < seg.length; j++) { totalSegRSS += (seg[j] - mean) ** 2; }
+            }
+        
+            const k = significantBPs.length;
+            const df1 = k, df2 = n - k - 1;
+            const statF = (overallRSS - totalSegRSS) / df1 / (totalSegRSS / df2);
+            const pValue = approximateFDistributionPValue(statF, df1, df2);
+            const effectSize = (overallRSS - totalSegRSS) / overallRSS;
+        
+            // ---------- 8. 输出 ----------
+            const bpPositions = significantBPs.join(", ");
+            const meansStr = finalSegmentMeans.map(m => m.toFixed(2)).join(" → ");
+            const conclusion = `✅ 检测到 ${k} 个断点（位置：${bpPositions}），分段均值：${meansStr}`;
+        
+            const firstBP = significantBPs[0];
+            if (verbose && firstBP !== null) {
+                console.log(`🔍 【第一个断点】位于数据点 #${firstBP}（索引 ${firstBP - 1}），变化 ${Math.abs(finalSegmentMeans[1] - finalSegmentMeans[0]).toFixed(2)}（阈值 ${minMeanChange.toFixed(2)}）`);
+                if (significantBPs.length > 1) { console.log(`ℹ️ 后续断点：${significantBPs.slice(1).join(", ")}`); }
+            }
+        
+            return {
+                hasChange: true,
+                breakpoints: significantBPs,
+                breakpointIndices: significantBPs.map(b => b - 1),
+                segmentMeans: finalSegmentMeans,
+                segmentSizes: finalSegmentSizes,
+                numberOfBreakpoints: k,
+                firstBreakpoint: firstBP,
+                firstBreakpointIndex: firstBP ? firstBP - 1 : -1,
+                statisticF: statF,
+                pValue: pValue,
+                effectSize: effectSize,
+                adaptiveThreshold: minMeanChange, // 输出自适应阈值，方便调试
+                conclusion: conclusion,
+                error: null
+            };
+        }
+
+        // ============================================================
+        // 辅助函数（完整保留，无改动）
+        // ============================================================
+        function getFCriticalValue(df2, alpha = 0.05) {
+            const table = { 2: 18.51, 3: 10.13, 4: 7.71, 5: 6.61, 6: 5.99, 7: 5.59, 8: 5.32, 9: 5.12, 10: 4.96, 11: 4.84, 12: 4.75, 13: 4.67, 14: 4.60, 15: 4.54, 16: 4.49, 17: 4.45, 18: 4.41, 19: 4.38, 20: 4.35, 21: 4.32, 22: 4.30, 23: 4.28, 24: 4.26, 25: 4.24, 26: 4.22, 27: 4.21, 28: 4.20, 29: 4.18, 30: 4.17, 35: 4.13, 40: 4.08, 45: 4.06, 50: 4.03, 55: 4.02, 60: 4.00, 65: 3.99, 70: 3.98, 75: 3.97, 80: 3.96, 85: 3.95, 90: 3.95, 95: 3.94, 100: 3.94, 120: 3.92, 140: 3.91, 160: 3.90, 180: 3.89, 200: 3.89 };
+            if (table[df2] !== undefined) { return table[df2]; }
+            const keys = Object.keys(table).map(Number).sort((a, b) => a - b);
+            if (df2 <= keys[0]) { return table[keys[0]]; }
+            if (df2 >= keys[keys.length - 1]) { return table[keys[keys.length - 1]]; }
+            for (let i = 0; i < keys.length - 1; i++) {
+                if (df2 >= keys[i] && df2 <= keys[i + 1]) {
+                    return table[keys[i]] + (table[keys[i + 1]] - table[keys[i]]) * (df2 - keys[i]) / (keys[i + 1] - keys[i]);
+                }
+            }
+            return 3.84 + 0.58 / df2;
+        }
+
+        function approximateFDistributionPValue(F, df1, df2) {
+            if (F < 0) { return 1; }
+            if (F > 1000) { return 0; }
+            if (df1 === 0 || df2 === 0) { return 1; }
+            const y = df1 * F / (df1 * F + df2);
+            if (y >= 1) { return 0; }
+            if (y <= 0) { return 1; }
+            const cdf = incompleteBeta(y, df1 / 2, df2 / 2);
+            return Math.max(0, Math.min(1, 1 - cdf));
+        }
+
+        function incompleteBeta(z, a, b) {
+            if (z <= 0) { return 0; }
+            if (z >= 1) { return 1; }
+            if (a <= 0 || b <= 0) { return 0; }
+            let n = 1000;
+            if (a < 0.5 || b < 0.5) { n = 2000; }
+            if (a > 10 && b > 10) { n = 500; }
+            if (n > 5000) { n = 5000; }
+            const h = z / n;
+            let sum = 0;
+            for (let i = 0; i <= n; i++) {
+                const t = i * h;
+                let f;
+                if (t === 0) {
+                    f = a === 1 ? 1 : 0;
+                } else if (t === 1) {
+                    f = b === 1 ? 1 : 0;
+                } else {
+                    f = Math.exp((a - 1) * Math.log(t) + (b - 1) * Math.log(1 - t));
+                }
+                if (i === 0 || i === n) {
+                    sum += f;
+                } else if (i % 2 === 1) {
+                    sum += 4 * f;
+                } else {
+                    sum += 2 * f;
+                }
+            }
+            const integral = h / 3 * sum;
+            const logBeta = logGamma(a) + logGamma(b) - logGamma(a + b);
+            return integral / Math.exp(logBeta);
+        }
+
+        function logGamma(z) {
+            if (z <= 0) { return Infinity; }
+            if (z < 1) { return logGamma(z + 1) - Math.log(z); }
+            const g = 7;
+            const c = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313, -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+            const x = z;
+            let sum = c[0];
+            for (let i = 1; i < g + 2; i++) { sum += c[i] / (x + i - 1); }
+            const t = x + g - 0.5;
+            return Math.log(Math.sqrt(2 * Math.PI)) + (x - 0.5) * Math.log(t) - t + Math.log(sum);
         }
     </script>
 </div></body>
