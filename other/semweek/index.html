@@ -73,9 +73,15 @@
             const semester = findSegment(inputDate);
 
             let week = getWeekNumber(semester.startDate, inputDate);
-            const negativeWeeks = week <= 0;
+            const negativeWeeks = {
+                a25: semester.identifier[0] == 25 && semester.identifier[1] == "A" && week <= 0,
+                a26: semester.identifier[0] == 26 && semester.identifier[1] == "A" && week <= 0
+            };
             if (new Date(inputDate).setHours(0, 0, 0) >= new Date(semester.vacationDate).setHours(0, 0, 0)) { week = "V"; }
-            cw("#result").html = `${semester.identifier[0]}${semester.identifier[1]}${week} : 20${semester.identifier[0]}年${semester.identifier[1] == "A" ? "秋" : "春"}季期${week == "V" ? "假期" : `第${week}周`}${negativeWeeks ? "<br />2025年秋季期高三提前开学，在高一、高二开学前的学期周被记为负周。" : ""}`;
+            cw("#result").html = `${semester.identifier[0]}${semester.identifier[1]}${week} : 20${semester.identifier[0]}年${semester.identifier[1] == "A" ? "秋" : "春"}季期${week == "V" ? "假期" : `第${week}周`}
+                ${negativeWeeks.a25 ? "<br />2025年秋季期高三提前开学，在高一、高二开学前的学期周被记为负周。" : ""}
+                ${negativeWeeks.a26 ? "<br />2026年秋季期因为本科生报道提前于校历第一周，此处算作提前开学，第一周的学期周被记为零周。" : ""}
+            `;
         }
 
         function apiCalc(targetDate) {
@@ -214,7 +220,7 @@
         }
 
         cw("#input-date").event("input", function () {
-            if (this.value == "" || new Date(this.value).setHours(0, 0, 0) < new Date("2020/9/3").setHours(0, 0, 0) || new Date(this.value).setHours(0, 0, 0) > new Date("2026/9/1").setHours(0, 0, 0)) {
+            if (this.value == "" || new Date(this.value).setHours(0, 0, 0) < new Date("2020/9/3").setHours(0, 0, 0) || new Date(this.value).setHours(0, 0, 0) > new Date("2031/1/1").setHours(0, 0, 0)) {
                 cw("#btn").disabled = true;
                 cw("#result").html = "<span style='color: var(--red);'>日期不在有效学期周范围内</span>";
             } else {
