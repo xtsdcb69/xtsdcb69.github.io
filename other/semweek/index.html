@@ -22,7 +22,7 @@
         <p style="color: var(--pink);">注意：该网站设计为<strong>自用</strong>，可能不适用于所有人；或者说对几乎所有人都不准确。</p>
         <p>学期周 (Semester Week) 为从学期开始的一种计周法，格式为 "年份后两位+A表示秋季期/S表示春季期+周数", 一周从星期日开始计算。例如 "23A4" 表示 "2023年秋季期第4周". 用 V 来表示假期期间，例如 "26SV" 表示2026年春季期结束后的假期。</p>
         <p>V 结尾的假期周精确到一天而不是一周，因此一周可以同时有数字周的日期和假期周的日期。</p>
-        <p>支持全初中阶段 (2020.9.3 ~ 2023.6.26 ~ 2023.8.26), 全高中阶段 (2023.8.27 ~ 2026.6.9 ~ 2026.9.1).</p>
+        <p>支持全初中阶段 (2020.9.3 ~ 2023.6.26 ~ 2023.8.26), 全高中阶段 (2023.8.27 ~ 2026.6.9 ~ 2026.9.2), 大一上阶段 (2026.9.3 ~ 2027.1.15 ~ 2027.2.28).</p>
         <hr />
         <p>在下方选择一个日期，计算该日期所在的学期周。</p>
         <p><input id="input-date" type="date" /><button id="btn" onclick="calc()" disabled>计算</button></p>
@@ -47,6 +47,7 @@
         <p>2025年春季期 共 21 周，包括 25S1 ~ 25S21.</p>
         <p>2025年秋季期 共 27 周，包括 25A-3 ~ 25A23. 注意前四周因高三提前开学，在高一高二开学前的学期周被记为负周 (包括 25A0). 要转换成高三的校历表需要把周数加 4, 高一高二的校历表不需要转换。</p>
         <p>2026年春季期 共 16 周，包括 26S1 ~ 26S16.</p>
+        <p>2026年秋季期 共 20 周，包括 26A0 ~ 26A19. 注意第一周因为本科生报道提前于校历第一周，此处算作提前开学，第一周的学期周被记为零周 (26A0). 学期周数字和课程表、校历表上标注的周数<strong>不需要</strong>经过转换。</p>
     </div>
     <script>
         const semesterList = [
@@ -62,7 +63,9 @@
             { identifier: [24, "A"], startDate: "2024/9/1", vacationDate: "2025/1/7", endDate: "2025/2/8" },
             { identifier: [25, "S"], startDate: "2025/2/9", vacationDate: "2025/7/4", endDate: "2025/8/2" },
             { identifier: [25, "A"], startDate: "2025/8/3", vacationDate: "2026/2/6", endDate: "2026/2/23" },
-            { identifier: [26, "S"], startDate: "2026/2/24", vacationDate: "2026/6/9", endDate: "2026/9/1" }
+            { identifier: [26, "S"], startDate: "2026/2/24", vacationDate: "2026/6/9", endDate: "2026/9/2" },
+            { identifier: [26, "A"], startDate: "2026/9/3", vacationDate: "2027/1/15", endDate: "2027/2/28" },
+            { identifier: [null, null], startDate: "2027/3/1", vacationDate: "2030/12/31", endDate: "2031/1/11" }
         ];
 
         function calc() {
@@ -120,6 +123,9 @@
 
             // 25S negative weeks
             if (startDateStr == "2025/8/3") { weekOffset -= 4; }
+
+            // 26A negative weeks
+            if (startDateStr == "2026/9/3") { weekOffset -= 1; }
         
             // 起始日期所在周为第1周，所以目标日期所在周 = 偏移量 + 1
             return weekOffset + 1;
@@ -197,7 +203,7 @@
 
         function calcDays() {
             const target = cw("#input-week").value;
-            const allDays = getDateRange("2020/9/3", "2026/9/1");
+            const allDays = getDateRange("2020/9/3", "2030/12/31");
             
             const matchedDays = [];
             for (const day of allDays) {
@@ -218,7 +224,7 @@
         });
 
         cw("#input-week").event("input", function () {
-            if (!(/^2[0-6][AS]([1-9]|[1-2][0-9]|V)$/g).test(this.value) && !(/25A(-[1-3]|0)/).test(this.value)) {
+            if (!(/^2[0-6][AS]([1-9]|[1-2][0-9]|V)$/g).test(this.value) && !(/25A(-[1-3]|0)/).test(this.value) && !(/26A0/).test(this.value)) {
                 cw("#btn-week").disabled = true;
                 cw("#result-sem").html = "<span style='color: var(--red);'>无效学期周格式</span>";
             } else {
@@ -232,7 +238,7 @@
             try {
                 cw("#now-semester-week").text = `${apiCalc(`${nowDate.getFullYear()}/${nowDate.getMonth() + 1}/${nowDate.getDate()}`)}-${["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"][nowDate.getDay()]} ${nowDate.getHours()}:${String(nowDate.getMinutes()).padStart(2, "0")}:${String(nowDate.getSeconds()).padStart(2, "0")}`;
             } catch {
-                cw("#now-semester-week").text = `26SV-${["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"][nowDate.getDay()]} ${nowDate.getHours()}:${String(nowDate.getMinutes()).padStart(2, "0")}:${String(nowDate.getSeconds()).padStart(2, "0")}`;
+                cw("#now-semester-week").text = `[Unregistered]-${["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"][nowDate.getDay()]} ${nowDate.getHours()}:${String(nowDate.getMinutes()).padStart(2, "0")}:${String(nowDate.getSeconds()).padStart(2, "0")}`;
             }
             cw("#now-date").text = `${nowDate.getFullYear()}.${nowDate.getMonth() + 1}.${nowDate.getDate()}`;
             await sleep(1000);
